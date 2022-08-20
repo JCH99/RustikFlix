@@ -1,7 +1,11 @@
-import { Typography } from "@mui/material";
+import Header from "./components/Header";
 
 function App() {
-  return <p className="text-yellow-400 bg-blue-700">setup</p>;
+  return (
+    <>
+      <Header />
+    </>
+  );
 }
 
 export default App;
