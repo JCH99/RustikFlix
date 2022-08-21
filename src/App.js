@@ -3,12 +3,12 @@ import Header from "./components/Header";
 import getEndpoint from "./utils/getEndpoint";
 import getFilteredMovies from "./utils/getFilteredMovies";
 import RatingSelector from "./components/RatingSelector";
-import NoResults from "./components/NoResults";
+
 import Loading from "./components/Loading";
 import MovieList from "./components/MovieList";
 
 function App() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [rating, setRating] = useState(0);
@@ -29,18 +29,18 @@ function App() {
     setLoading(false);
   }, []);
 
-  // INITIAL REQUEST
+  // DEBOUNCED SEARCH REQUEST // includes initial request
   useEffect(() => {
-    getMovies();
-  }, [getMovies]);
+    //instantaneous initial charge. debounce on text search.
+    if (searchText !== "") {
+      const timeout = setTimeout(() => {
+        getMovies(searchText);
+      }, 2000);
 
-  // DEBOUNCED SEARCH REQUEST
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      getMovies(searchText);
-    }, 2000);
-
-    return () => clearTimeout(timeout);
+      return () => clearTimeout(timeout);
+    } else {
+      getMovies();
+    }
   }, [getMovies, searchText]);
 
   // CLIENT-SIDE FILTERING
@@ -54,13 +54,7 @@ function App() {
           rating={rating}
           handleRatingChange={handleRatingChange}
         />
-        {loading ? (
-          <Loading />
-        ) : filteredMoviesByRating.length > 0 ? (
-          <MovieList movies={filteredMoviesByRating} />
-        ) : (
-          <NoResults />
-        )}
+        <MovieList loading={loading} movies={filteredMoviesByRating} />
       </div>
     </>
   );
