@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import Header from "./components/Header";
 import getEndpoint from "./utils/getEndpoint";
 import getFilteredMovies from "./utils/getFilteredMovies";
@@ -20,17 +20,30 @@ function App() {
     setRating(newValue);
   };
 
-  useEffect(() => {
-    const getInitialMovies = async () => {
-      setLoading(true);
-      const response = await fetch(getEndpoint());
-      const data = await response.json();
-      setMovies(data.results);
-      setLoading(false);
-    };
-    getInitialMovies();
+  const getMovies = useCallback(async (query = "") => {
+    console.log("CALLING!!");
+    setLoading(true);
+    const response = await fetch(getEndpoint(query));
+    const data = await response.json();
+    setMovies(data.results);
+    setLoading(false);
   }, []);
 
+  // INITIAL REQUEST
+  useEffect(() => {
+    getMovies();
+  }, [getMovies]);
+
+  // DEBOUNCED SEARCH REQUEST
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      getMovies(searchText);
+    }, 2000);
+
+    return () => clearTimeout(timeout);
+  }, [getMovies, searchText]);
+
+  // CLIENT-SIDE FILTERING
   const filteredMoviesByRating = getFilteredMovies(movies, rating);
 
   return (

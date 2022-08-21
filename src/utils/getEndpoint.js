@@ -1,6 +1,6 @@
 const API_KEY = process.env.REACT_APP_API_KEY;
 
-const getEndpoint = (query = "") => {
+const getEndpoint = (query) => {
   if (query === "") {
     return `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`;
   } else {

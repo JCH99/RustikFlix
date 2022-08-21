@@ -21,7 +21,7 @@ const Header = (props) => {
             className="bg-white rounded-lg overflow-hidden"
             InputProps={{
               endAdornment: (
-                <InputAdornment position="end" className="cursor-pointer">
+                <InputAdornment position="end">
                   <SearchIcon />
                 </InputAdornment>
               ),
