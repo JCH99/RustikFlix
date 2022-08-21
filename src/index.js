@@ -8,14 +8,17 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { StyledEngineProvider } from "@mui/material/styles";
 import GenresContextProvider from "./context/GenresContextProvider";
+import MaterialThemeProvider from "./context/MaterialThemeProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <StyledEngineProvider injectFirst>
-      <GenresContextProvider>
-        <App />
-      </GenresContextProvider>
+      <MaterialThemeProvider>
+        <GenresContextProvider>
+          <App />
+        </GenresContextProvider>
+      </MaterialThemeProvider>
     </StyledEngineProvider>
   </React.StrictMode>
 );
