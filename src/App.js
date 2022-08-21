@@ -16,6 +16,11 @@ function App() {
   const handleTextChange = (event) => {
     setSearchText(event.target.value);
   };
+
+  const handleClearTextfield = (event) => {
+    setSearchText("");
+  };
+
   const handleRatingChange = (event, newValue) => {
     setRating(newValue);
   };
@@ -48,7 +53,11 @@ function App() {
 
   return (
     <>
-      <Header searchText={searchText} handleTextChange={handleTextChange} />
+      <Header
+        searchText={searchText}
+        handleTextChange={handleTextChange}
+        handleClearTextfield={handleClearTextfield}
+      />
       <div className="xl:container mx-auto px-2 py-8 space-y-8">
         <RatingSelector
           rating={rating}

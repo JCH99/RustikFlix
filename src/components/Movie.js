@@ -41,7 +41,7 @@ const Movie = (props) => {
           />
         ) : (
           <div className="flex flex-col items-center text-center">
-            <BrokenImageOutlinedIcon />
+            <BrokenImageOutlinedIcon fontSize="large" color="secondary" />
             <p>{movie.title}</p>
           </div>
         )}
