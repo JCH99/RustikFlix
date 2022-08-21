@@ -26,7 +26,6 @@ function App() {
   };
 
   const getMovies = useCallback(async (query = "") => {
-    console.log("CALLING!!");
     setLoading(true);
     const response = await fetch(getEndpoint(query));
     const data = await response.json();
