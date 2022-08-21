@@ -18,7 +18,10 @@ const Header = (props) => {
     <header className="relative h-[40vh] sm:h-[50vh] md:h-[60vh] lg:h-[75vh] bg-gray-900 flex justify-center items-end">
       <div className="h-64 sm:h-96 md:h-[30rem] lg:h-[40rem] flex justify-center relative">
         <img src={morpheus} alt="Morpheus hero" />
-        <form className="absolute bottom-6" onSubmit={onSubmitHandler}>
+        <form
+          className="absolute bottom-[16.5rem] sm:bottom-6"
+          onSubmit={onSubmitHandler}
+        >
           <TextField
             id="movie-search"
             label="Search..."
@@ -35,10 +38,9 @@ const Header = (props) => {
                     <Tooltip
                       title="Clear textfield"
                       onClick={handleClearTextfield}
+                      className="cursor-pointer"
                     >
-                      <IconButton>
-                        <ClearIcon />
-                      </IconButton>
+                      <ClearIcon />
                     </Tooltip>
                   )}
                 </InputAdornment>
