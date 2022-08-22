@@ -18,7 +18,7 @@ You can also run the project locally:
 
 Clone the repository, **add the .env** with the following variable:
 REACT_APP_API_KEY=(ask me for the private key)
-Then run **npm install** and then **npm run start**. The application will start locally on **localhost 3000** in **DEVELOPMENT MODE** non-optimized mode.
+Then run **npm install** and then **npm run start**. The application will start locally on **localhost 3000** in **DEVELOPMENT MODE** non-optimized mode. (OPEN http://localhost:3000/)
 To run the application in **PRODUCTION MODE** run **npm run build**. The \build folder will be generated and the optimized application can be deployed locally using **npm install -g serve** and then run **serve -s build**.\.
 
 # CREATE REACT APP INFO
