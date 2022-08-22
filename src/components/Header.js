@@ -18,7 +18,7 @@ const Header = (props) => {
       <div className="h-64 sm:h-96 md:h-[30rem] lg:h-[40rem] flex justify-center relative">
         <img src={morpheus} alt="Morpheus hero" />
         <form
-          className="absolute bottom-[16.5rem] sm:bottom-6"
+          className="absolute bottom-20 sm:bottom-6"
           onSubmit={onSubmitHandler}
         >
           <TextField
