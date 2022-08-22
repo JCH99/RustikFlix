@@ -1,4 +1,27 @@
-# Getting Started with Create React App
+# Challenge-Rustik
+
+Simple responsive project done in 2 days as a challenge for the frontend engineer position at Rustik.
+The application allows to search for movie information. It has the ability to filter by name and rating.
+It meets all the specified requirements, including the extra points.
+
+Stack\
+
+- ReactJS
+- MaterialUI
+- Tailwind
+
+# How to run the project?
+
+You can visit the webapp here: https://jch99.github.io/RustikFlix/
+
+You can also run the project locally:
+
+Clone the repository, **add the .env** with the following variable:
+REACT_APP_API_KEY=(ask me for the private key)
+Then run **npm install** and then **npm run start**. The application will start locally on **localhost 3000** in **DEVELOPMENT MODE** non-optimized mode.
+To run the application in **PRODUCTION MODE** run **npm run build**. The \build folder will be generated and the optimized application can be deployed locally using **npm install -g serve** and then run **serve -s build**.\.
+
+# CREATE REACT APP INFO
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

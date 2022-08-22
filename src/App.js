@@ -3,8 +3,6 @@ import Header from "./components/Header";
 import getEndpoint from "./utils/getEndpoint";
 import getFilteredMovies from "./utils/getFilteredMovies";
 import RatingSelector from "./components/RatingSelector";
-
-import Loading from "./components/Loading";
 import MovieList from "./components/MovieList";
 
 function App() {
@@ -33,13 +31,14 @@ function App() {
     setLoading(false);
   }, []);
 
+  const DEBOUNCE_TIME = 1500;
   // DEBOUNCED SEARCH REQUEST // includes initial request
   useEffect(() => {
     //instantaneous initial charge. debounce on text search.
     if (searchText !== "") {
       const timeout = setTimeout(() => {
         getMovies(searchText);
-      }, 2000);
+      }, DEBOUNCE_TIME);
 
       return () => clearTimeout(timeout);
     } else {
