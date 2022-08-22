@@ -1,8 +1,6 @@
 import React, { useContext } from "react";
-import { GenresContext } from "../context/GenresContextProvider";
-import Button from "@mui/material/Button";
+import { GenresContext } from "../../context/GenresContextProvider";
 import Dialog from "@mui/material/Dialog";
-import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import Slide from "@mui/material/Slide";
@@ -13,6 +11,9 @@ import GroupsIcon from "@mui/icons-material/Groups";
 import Chip from "@mui/material/Chip";
 import EscalatorWarningIcon from "@mui/icons-material/EscalatorWarning";
 import ExplicitIcon from "@mui/icons-material/Explicit";
+import TranslateIcon from "@mui/icons-material/Translate";
+import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
+import Overview from "./Overview";
 
 const BASE_IMG_API_URL = "https://image.tmdb.org/t/p/w500";
 
@@ -85,26 +86,41 @@ const DetailedMovie = (props) => {
             ))}
           </div>
         </div>
-        <div className="flex items-center space-x-2">
-          <h3 className="font-bold">Public:</h3>
-          <div className="flex items-center space-x-1 text-sm">
-            {movie.adult ? (
-              <>
-                <ExplicitIcon fontSize="large" color="secondary" />
-                <p>Adults</p>
-              </>
-            ) : (
-              <>
-                <EscalatorWarningIcon fontSize="large" color="primary" />
-                <p>Everyone</p>
-              </>
-            )}
+        <div className="flex items-start justify-between flex-col sm:flex-row sm:items-center space-y-4 sm:space-y-0">
+          <div className="flex items-center space-x-2">
+            <h3 className="font-bold">Public:</h3>
+            <div className="flex items-center space-x-1 text-sm">
+              {movie.adult ? (
+                <>
+                  <ExplicitIcon fontSize="large" color="secondary" />
+                  <p>Adults</p>
+                </>
+              ) : (
+                <>
+                  <EscalatorWarningIcon fontSize="large" color="primary" />
+                  <p>Everyone</p>
+                </>
+              )}
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-2">
+            <h3 className="font-bold">Language:</h3>
+            <div className="flex items-center space-x-1 text-sm">
+              <TranslateIcon fontSize="large" color="primary" />
+              <p>"{movie.original_language}"</p>
+            </div>
+          </div>
+          <div className="flex items-center space-x-2">
+            <h3 className="font-bold">Release:</h3>
+            <div className="flex items-center space-x-1 text-sm">
+              <CalendarMonthIcon fontSize="large" color="primary" />
+              <p>{movie.release_date}</p>
+            </div>
           </div>
         </div>
-        <div>
-          <h3 className="font-bold">Overview:</h3>
-          <p>{movie.overview}</p>
-        </div>
+
+        <Overview text={movie.overview} />
       </DialogContent>
     </Dialog>
   );
