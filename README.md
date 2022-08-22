@@ -4,7 +4,7 @@ Simple responsive project done in 2 days as a challenge for the frontend enginee
 The application allows to search for movie information. It has the ability to filter by name and rating.
 It meets all the specified requirements, including the extra points.
 
-Stack\
+Stack
 
 - ReactJS
 - MaterialUI
