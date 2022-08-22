@@ -33,7 +33,6 @@ const DetailedMovie = (props) => {
     })
     .filter((genre) => genre !== undefined);
 
-  console.log(movie);
   return (
     <Dialog
       open={open}

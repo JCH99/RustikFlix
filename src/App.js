@@ -4,12 +4,25 @@ import getEndpoint from "./utils/getEndpoint";
 import getFilteredMovies from "./utils/getFilteredMovies";
 import RatingSelector from "./components/RatingSelector";
 import MovieList from "./components/MovieList";
+import FeedbackSnackbar from "./components/FeedbackSnackbar";
 
 function App() {
   const [loading, setLoading] = useState(true);
   const [movies, setMovies] = useState([]);
   const [searchText, setSearchText] = useState("");
   const [rating, setRating] = useState(0);
+  const [errorSnackbar, setErrorSnackbar] = useState({
+    open: false,
+    message: "",
+  });
+
+  const openErrorSnackbarHandler = (message) => {
+    setErrorSnackbar({ open: true, message: message });
+  };
+
+  const closeErrorSnackbarHandler = () => {
+    setErrorSnackbar({ open: false, message: "" });
+  };
 
   const handleTextChange = (event) => {
     setSearchText(event.target.value);
@@ -24,11 +37,16 @@ function App() {
   };
 
   const getMovies = useCallback(async (query = "") => {
-    setLoading(true);
-    const response = await fetch(getEndpoint(query));
-    const data = await response.json();
-    setMovies(data.results);
-    setLoading(false);
+    try {
+      setLoading(true);
+      const response = await fetch(getEndpoint(query));
+      const data = await response.json();
+      setMovies(data.results);
+    } catch (e) {
+      openErrorSnackbarHandler("There is an error, please try again later.");
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   const DEBOUNCE_TIME = 1500;
@@ -63,6 +81,12 @@ function App() {
         />
         <MovieList loading={loading} movies={filteredMoviesByRating} />
       </div>
+      <FeedbackSnackbar
+        open={errorSnackbar.open}
+        message={errorSnackbar.message}
+        closeHandler={closeErrorSnackbarHandler}
+        severity={"error"}
+      />
     </>
   );
 }
