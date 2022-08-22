@@ -4,6 +4,8 @@ Simple responsive project done in 2 days as a challenge for the frontend enginee
 The application allows to search for movie information. It has the ability to filter by name and rating.
 It meets all the specified requirements, including the extra points.
 
+Clarification: the filtering works by minimum rating, that is, selecting 3 stars will show everything that has 3 or more stars. That was my interpretation of the requirement
+
 Stack
 
 - ReactJS
